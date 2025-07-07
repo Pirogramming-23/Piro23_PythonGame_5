@@ -1,7 +1,7 @@
 import random
 import time
 from game1 import play as game1
-from game2 import play as game2
+from game_bs31 import play as game2
 from game3 import play as game3
 from game_bs31 import play as game4
 
