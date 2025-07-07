@@ -7,9 +7,9 @@ from game4 import play as game4
 # 이 부분도 마찬가지로 이름 바꿀 시 교체하기
 game_list = [
     ("사랑의 총알 게임", game1),
-    ("369 게임", game2),
-    ("좋아 게임", game3),
-    ("두부 게임", game4),
+    ("좋아 게임", game2),
+    ("369 게임", game3),
+    ("베스킨라빈스 31", game4),
 ]
 
 def show_intro():
