@@ -47,7 +47,7 @@ def play(name, participants):
                     delayed_print(f"🥴 누가 술을 마셔~ {current_player}이(가) 술을 마셔🍺 ~")
                     return current_player
             except:
-                delayed_print("❌ 잘못된 입력입니다! 🥴 누가 술을 마셔~ {current_player}이(가) 술을 마셔🍺 ~")
+                delayed_print(f"❌ 잘못된 입력입니다! 🥴 누가 술을 마셔~ {current_player}이(가) 술을 마셔🍺 ~")
                 return current_player
         else:
             time.sleep(1)

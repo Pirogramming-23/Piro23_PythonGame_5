@@ -1,8 +1,8 @@
 import random
 import time
-from game1 import play as game1
+from game_like import play as game1
 from game_bs31 import play as game2
-from game3 import play as game3
+from game_sblike import play as game3
 from game_bs31 import play as game4
 
 # 게임 리스트
