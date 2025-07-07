@@ -79,7 +79,7 @@ def play(player_name, participants):
                     slow_print(f"⚠️ {questioner} 거절 횟수: {p['ban_count']}회")
                     if p["ban_count"] >= 3:
                         slow_print(f"🍻 {questioner} 님이 칵 퉤 3번 당했습니다! 벌주 드세요!")
-                        slow_print(f"👉 누가 술을 마셔~ {questioner}이가 마셔~! 🍺")
+                        slow_print(f"👉 누가 술을 마셔~ {questioner}(이)가 마셔~! 🍺")
                         p["ban_count"] = 0
                         return questioner
             # 질문자 유지
