@@ -1,7 +1,7 @@
 import random
 import time
 from game_like import play as game1
-from game_bs31 import play as game2
+from game_369 import play as game2
 from game_sblike import play as game3
 from game_bs31 import play as game4
 
@@ -112,8 +112,14 @@ def invite_friends(player_name, player_limit):
     return participants
 
 # 게임 진행 라운드
-def play_game_round(participants, my_name):
-    for player in participants:
+def play_game_round(participants, my_name, starter_name):
+    # starter를 첫 번째로 두고, 나머지 랜덤 섞기
+    starter = next(p for p in participants if p["name"] == starter_name)
+    others = [p for p in participants if p["name"] != starter_name]
+    random.shuffle(others)
+    order = [starter] + others
+
+    for player in order:
         temp = r"""
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~🍺 오늘의 Alcohol Game 🍺~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                             🍺 1. {}
@@ -139,14 +145,9 @@ def play_game_round(participants, my_name):
                     print("⚠️ 숫자를 입력해주세요.")
         else:
             # AI 턴 → 랜덤 선택 + 출력
-            answer = input(f"술게임 진행중! {player['name']}의 턴입니다. 그만하려면 'exit', 계속하려면 아무 키나 눌러주세요! : ").strip().lower()
-            if answer == 'exit':
-                print("게임을 종료합니다!")
-                exit()
-
-            choice = random.randint(1, len(game_list))
             print(f"\n🎲 {player['name']} (이)가 게임을 선택 중...")
             time.sleep(1)
+            choice = random.randint(1, len(game_list))
             print(f"{player['name']} (이)가 선택한 게임 번호 : {choice} - {game_list[choice - 1][0]}")
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
@@ -163,6 +164,8 @@ def play_game_round(participants, my_name):
             if p['drank'] >= p['limit']:
                 game_over(p['name'])
                 exit()
+
+        return drinker_name  # 이번 라운드에서 걸린 사람 반환
 
 # 상태 출력
 def show_status(participants):
@@ -196,7 +199,11 @@ if __name__ == "__main__":
         name = get_player_name()
         limit = select_drink_limit()
         participants = invite_friends(name, limit)
+
+        # 첫 스타터는 랜덤
+        starter = random.choice(participants)['name']
+
         while True:
-            play_game_round(participants, name)
+            starter = play_game_round(participants, name, starter)
     else:
         exit()
