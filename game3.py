@@ -21,13 +21,14 @@ def play(name, participants):
     delayed_print("\n  3. 실수한 사람이 술을 마십니다! 🍺")
     delayed_print("=" * 50)
 
-    # 딸기 개수 패턴: 1~8 -> 7~1 -> 반복
-    pattern = [1,2,3,4,5,6,7,8,7,6,5,4,3,2,1]
+    pattern = [1,2,3,4,5,6,7,8,7,6,5,4,3,2]
     pattern_index = 0
 
-    player_names = [p['name'] for p in participants]
-    turn = 0
     user_name = participants[0]['name']
+    player_names = [p['name'] for p in participants]
+    start_index = player_names.index(name)
+    player_names = player_names[start_index:] + player_names[:start_index]
+    turn = 0
 
     while True:
         current_player = player_names[turn % len(player_names)]
@@ -39,17 +40,20 @@ def play(name, participants):
             try:
                 user_input = input("몇 번 외치시겠어요? (딸기 몇 번?): ").strip()
                 user_count = int(user_input)
+                delayed_print(f"😎 {current_player}: {'딸기 ' * user_count}")  # ✅ 먼저 출력
+
                 if user_count != current_count:
                     delayed_print(f"❌ 틀렸습니다! 정답은 {current_count}번이에요!")
                     delayed_print(f"🥴 누가 술을 마셔~ {current_player}이(가) 술을 마셔🍺 ~")
                     return current_player
-                delayed_print(f"😎 {current_player}: {'딸기 ' * user_count}")
             except:
-                delayed_print("❌ 잘못된 입력입니다! 벌주~")
+                delayed_print("❌ 잘못된 입력입니다! 🥴 누가 술을 마셔~ {current_player}이(가) 술을 마셔🍺 ~")
                 return current_player
         else:
             time.sleep(1)
             if random.random() < 0.15:
+                wrong_count = random.choice([i for i in range(1, 9) if i != current_count])
+                delayed_print(f"🙋‍♂️ {current_player}: {'딸기 ' * wrong_count}")
                 delayed_print(f"❌ 틀렸습니다! 정답은 {current_count}번이에요!")
                 delayed_print(f"🥴 누가 술을 마셔~ {current_player}이(가) 술을 마셔🍺 ~")
                 return current_player
