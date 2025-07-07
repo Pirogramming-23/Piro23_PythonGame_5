@@ -8,7 +8,7 @@ from game4 import play as game4
 game_list = [
     ("사랑의 총알 게임", game1),
     ("좋아 게임", game2),
-    ("369 게임", game3),
+    ("딸기 게임", game3),
     ("두부 게임", game4),
 ]
 
