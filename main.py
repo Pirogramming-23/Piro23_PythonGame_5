@@ -2,14 +2,18 @@ import random
 from game1 import play as game1 # game1: 박수빈 2: 진혜성 3: 송정은 4: 전도현 (각자 파일에 코딩하고 파일 이름 바꿀시 모듈도 바꿔주기)
 from game_369 import play as game2
 from game3 import play as game3
-from game4 import play as game4
+from game_bs31 import play as game4
 
 # 이 부분도 마찬가지로 이름 바꿀 시 교체하기
 game_list = [
-    ("사랑의 총알 게임", game1),
-    ("좋아 게임", game2),
-    ("369 게임", game3),
+    # ("사랑의 총알 게임", game1),
+    # ("좋아 게임", game2),
+    # ("369 게임", game3),
     ("베스킨라빈스 31", game4),
+    ("베스킨라빈스 31", game4),
+    ("베스킨라빈스 31", game4),
+    ("베스킨라빈스 31", game4),
+    
 ]
 
 def show_intro():

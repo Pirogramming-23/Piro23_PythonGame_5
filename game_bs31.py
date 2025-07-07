@@ -13,15 +13,23 @@ def play(name, participants):
     # 게임 상태 초기화
     current_number = 0
     player_names = [p['name'] for p in participants]
-    current_player_index = 0
+    user_name = participants[0]["name"]
+
+    temp = 0
+    turn = 0
+    for participant in participants:
+        if participant['name'] == name:
+            turn = temp
+        else:
+            temp+=1
     
     # 게임 시작
     while current_number < 31:
-        current_player = player_names[current_player_index]
+        current_player = player_names[turn % len(player_names)]
         print(f"\n현재 숫자: {current_number}")
         print(f"🎯 {current_player}님의 차례입니다!")
         
-        if current_player == name:
+        if current_player == user_name:
             # 사용자 턴
             while True:
                 try:
@@ -99,7 +107,7 @@ def play(name, participants):
                 return current_player
         
         # 다음 플레이어로 넘어가기
-        current_player_index = (current_player_index + 1) % len(player_names)
+        turn+=1
         
         # 잠시 대기 (게임 진행 속도 조절)
         time.sleep(0.5)
